@@ -1,0 +1,26 @@
+<div class="list row">
+  <div class="col-md-6">
+    <h4>Tutorials list</h4>
+    <ul class="list-group">
+      <li
+        class="list-group-item"
+        *ngFor="let tutorial of tutorials; let i = index"
+        (click)="setActiveTutorial(tutorial, i)"
+        [class.active]="i == currentIndex"
+      >
+        {{ tutorial.title }}
+      </li>
+    </ul>
+  </div>
+
+  <div class="col-md-6">
+    <div *ngIf="currentTutorial">
+      <app-tutorial-details
+        [tutorial]="currentTutorial"
+        (refreshList)="refreshList()"
+      ></app-tutorial-details>
+    </div>
+
+    <div *ngIf="!currentTutorial">Please click on a tutorial...</div>
+  </div>
+</div>
